@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { 
   View, Text, Button, FlatList,
   TouchableOpacity, Platform, Image, 
-  Dimensions
 } from 'react-native';
 
 import axios from 'axios';
@@ -10,7 +9,6 @@ import { Container, Content, Header, Left, Right, Icon, Card, CardItem, Body, Th
 import Swiper from 'react-native-swiper';
 import MyButton from '../../components/MyButton';
 
-const { width, height } = Dimensions.get("screen");
 
 class HomeScreen extends Component {
 
@@ -67,7 +65,7 @@ class HomeScreen extends Component {
         <Left>
         <Thumbnail square source={require('../../img/hijazi.jpg')} />  
         <Body>
-        <Text>{item.name} <Text>(ID:{item.id})</Text></Text>  
+        <Text>{item.name} <Text>(#{index})</Text></Text>  
         <MyButton title="Add to Bag" onPress={()=>{}}/>    
         </Body>
         </Left>
@@ -79,12 +77,28 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{height:400}}>
 
         <View>
         
+          <Swiper style={{ height: 150}} autoplay={true} >
+            <View style={{flex: 1}} >
+              <Image style={{ flex: 1, height: null, width: null, resizeMode: 'contain' }}
+              source={require('../../assets/swiper_1.jpg')} />
+            </View>
+            <View style={{flex: 1}} >
+              <Image style={{ flex: 1, height: null, width: null, resizeMode: 'contain' }}
+              source={require('../../assets/swiper_1.jpg')} />
+            </View>
+            <View style={{flex: 1}} >
+              <Image style={{ flex: 1, height: null, width: null, resizeMode: 'contain' }}
+              source={require('../../assets/swiper_1.jpg')} />
+            </View>
+          </Swiper>
+
+
           <FlatList
-            style= {{backgroundColor:'#EFEFF4', height: height }}
+            style= {{backgroundColor:'#EFEFF4'}}
             data = {this.state.data}
             renderItem = {this.renderCell}
           />    

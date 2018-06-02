@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-class DetailScreen extends Component {
+class WelcomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.props.navigation.state.params.item.name}</Text>
-        <Text>{this.props.navigation.state.params.item.id}</Text>
-        <Text>{this.props.navigation.state.params.item.sf_product_category_id}</Text>
+        <Text>WelcomeScreen</Text>
       </View>
     );
   }
@@ -21,4 +19,4 @@ const styles = {
   },
 };
 
-export default DetailScreen;
+export default WelcomeScreen;
