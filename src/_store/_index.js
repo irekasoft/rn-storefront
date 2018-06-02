@@ -9,13 +9,17 @@ import { AsyncStorage } from 'react-native';
 // import devToolsEnhancer from 'remote-redux-devtools';
 // redux thunk fro asynchronous actions
 
+const middleware = [thunk];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore (
-    // reducers,
+    reducers,
     // nil
     {},
     compose(
       applyMiddleware(thunk),
-      // autoRehydrate(), // store enhancer
+      autoRehydrate(), // store enhancer
+      composeEnhancers(applyMiddleware(...middleware))
     )
 );
 

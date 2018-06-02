@@ -10,6 +10,10 @@ import { Container, Content, Header, Left, Right, Icon, Card, CardItem, Body, Th
 import Swiper from 'react-native-swiper';
 import MyButton from '../../components/MyButton';
 
+import { connect } from 'react-redux';
+
+import * as actions from '../../_actions/_index';
+
 const { width, height } = Dimensions.get("screen");
 
 class HomeScreen extends Component {
@@ -23,6 +27,7 @@ class HomeScreen extends Component {
   constructor(props) {
 
     super(props);
+   
 
   }
 
@@ -30,6 +35,7 @@ class HomeScreen extends Component {
     data: [],
   }
 
+  
   componentDidMount(){
 
     console.log('hello componentDidMount');
@@ -65,10 +71,10 @@ class HomeScreen extends Component {
       <Card>
       <CardItem  button onPress={()=>this.props.navigation.navigate('main_detail', { item: item })}>
         <Left>
-        <Thumbnail square source={require('../../img/hijazi.jpg')} />  
+        <Thumbnail style={{resizeMode:'cover'}} square source={{ uri: item.image_url }} />  
         <Body>
         <Text>{item.name} <Text>(ID:{item.id})</Text></Text>  
-        <MyButton title="Add to Bag" onPress={()=>{}}/>    
+        <MyButton title="Add to Bag" onPress={()=>{ this.props.addToCart(item) }}/>    
         </Body>
         </Left>
       </CardItem>
@@ -78,6 +84,9 @@ class HomeScreen extends Component {
   };
 
   render() {
+
+    console.log(this.props);
+
     return (
       <View>
 
@@ -106,4 +115,4 @@ const styles = {
   },
 };
 
-export default HomeScreen;
+export default connect(null,actions)(HomeScreen);

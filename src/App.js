@@ -6,7 +6,7 @@ import { createStackNavigator, createTabNavigator, createDrawerNavigator } from 
 import HomeScreen from './TabNavigator/HomeStack/HomeScreen';
 import SecondScreen from './screens/SecondScreen';
 import DetailScreen from './TabNavigator/HomeStack/DetailScreen';
-import CartScreen from './screens/CartScreen';
+import MainCartScreen from './TabNavigator/CartStack/MainCartScreen';
 import ProfileHomeScreen from './TabNavigator/ProfileStack/ProfileHomeScreen';
 
 // REDUX
@@ -14,7 +14,7 @@ import ProfileHomeScreen from './TabNavigator/ProfileStack/ProfileHomeScreen';
 // import store from './_store/_index';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reducers from './_reducers/_index';
 import thunk from 'redux-thunk';
 
@@ -44,7 +44,7 @@ const MainStack = createStackNavigator({
 
 const CartStack = createStackNavigator({
   cart_home: {
-    screen: CartScreen
+    screen: MainCartScreen
   },
   cart_detail:{
     screen: DetailScreen
@@ -80,11 +80,12 @@ const MainTab = createTabNavigator({
 
 });
 
+import store from './_store/_index';
 
 class App extends Component {
   render() {
     return (
-      <Provider store={createStore(reducers, composeEnhancers(applyMiddleware(...middleware)))} >
+      <Provider store={store} >
       <MainTab/>
       </Provider>
     );

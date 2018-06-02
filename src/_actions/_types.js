@@ -1,6 +1,9 @@
 export const FACEBOOK_LOGIN_SUCCESS = 'FACEBOOK_LOGIN_SUCCESS';
 export const FACEBOOK_LOGIN_FAIL    = 'FACEBOOK_LOGIN_FAIL';
 
+export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
+
+
 export const FETCH_JOBS = 'FETCH_JOBS';
 export const LIKE_JOB = 'LIKE_JOB';
 export const CLEAR_LIKED_JOBS = 'CLEAR_LIKED_JOBS';

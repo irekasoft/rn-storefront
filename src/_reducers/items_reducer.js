@@ -8,15 +8,13 @@ export default function (state = [], action) {
 
     case REHYDRATE:
 
-       return action.payload.likedJobs || [];
+       return action.payload.itemsInCart || [];
 
-    case constants.LIKE_JOB:
+    case constants.ADD_ITEM_TO_CART:
 
       // filter to add only unique jobkey
       // from the current state
-      return _.uniqBy([
-        action.payload, ...state
-      ], 'jobkey' );
+      return  [action.payload, ...state];
 
     case constants.CLEAR_LIKED_JOBS:
 

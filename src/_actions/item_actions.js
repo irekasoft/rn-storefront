@@ -16,7 +16,15 @@ const JOB_QUERY_PARAMS = {
 
 };
 
+export const addToCart = ( item ) => {
+  console.log("addToCart");
 
+  return {
+    type: constants.ADD_ITEM_TO_CART,
+    payload: item, 
+
+  };
+}
 
 export const likeJob = ( job ) => {
 
