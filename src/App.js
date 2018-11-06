@@ -3,11 +3,11 @@ import { View, Text } from 'react-native';
 
 import { createStackNavigator, createTabNavigator, createDrawerNavigator } from 'react-navigation';
 
-import HomeScreen from './TabNavigator/HomeStack/HomeScreen';
+import HomeScreen from './screens/HomeScreen';
 import SecondScreen from './screens/SecondScreen';
-import DetailScreen from './TabNavigator/HomeStack/DetailScreen';
-import MainCartScreen from './TabNavigator/CartStack/MainCartScreen';
-import ProfileHomeScreen from './TabNavigator/ProfileStack/ProfileHomeScreen';
+import DetailScreen from './screens/DetailScreen';
+import MainCartScreen from './screens/MainCartScreen';
+import ProfileHomeScreen from './screens/ProfileHomeScreen';
 
 // REDUX
 // import { Provider } from 'react-redux';
@@ -26,13 +26,11 @@ const MainStack = createStackNavigator({
   main_home: {
     screen: HomeScreen,
     title: "Home",
-
   },
   main_detail:{
     screen: DetailScreen
   }
 },{
-
   navigationOptions: {
     title: "Home",
     tabBarIcon: ({ tintColor }) => (

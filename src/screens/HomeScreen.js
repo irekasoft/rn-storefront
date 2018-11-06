@@ -5,14 +5,18 @@ import {
   Dimensions
 } from 'react-native';
 
+import { 
+  Container, Content, Header, Left, 
+  Right, Icon, Card, CardItem, Body, Thumbnail 
+} from 'native-base';
+
 import axios from 'axios';
-import { Container, Content, Header, Left, Right, Icon, Card, CardItem, Body, Thumbnail } from 'native-base';
 import Swiper from 'react-native-swiper';
-import MyButton from '../../components/MyButton';
+import MyButton from '../components/MyButton';
 
 import { connect } from 'react-redux';
 
-import * as actions from '../../_actions/_index';
+import * as actions from '../_actions/_index';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -25,16 +29,12 @@ class HomeScreen extends Component {
   });
 
   constructor(props) {
-
     super(props);
-   
-
   }
 
   state = {
     data: [],
   }
-
   
   componentDidMount(){
 
@@ -65,45 +65,39 @@ class HomeScreen extends Component {
 
   // RENDER
 
+  render() {
+
+    console.log(this.props);
+    return (
+      <View>
+        <View>        
+          <FlatList
+            style= {{ backgroundColor:'#EFEFF4', height: height }}
+            data = {this.state.data}
+            renderItem = {this.renderCell}
+          />    
+        </View>
+      </View>
+    );
+  }
+
   renderCell = ({item, index}) => {
     
     return (
-      <Card>
-      <CardItem  button onPress={()=>this.props.navigation.navigate('main_detail', { item: item })}>
+      <Card style={{ elevation:0, margin:16 }}>
+      <CardItem button onPress={()=>this.props.navigation.navigate('main_detail', { item: item })}>
         <Left>
-        <Thumbnail style={{resizeMode:'cover'}} square source={{ uri: item.image_url }} />  
-        <Body>
-        <Text>{item.name} <Text>(ID:{item.id})</Text></Text>  
-        <MyButton title="Add to Bag" onPress={ ()=>{ this.props.addToCart(item) }}/>    
+        <Image style={{resizeMode:'contain', width:80, height: 80}} source={{ uri: item.image_url }} />        
+        <Body>          
+          <Text style={{fontSize:19, fontWeight:'700'}}>{item.name} <Text>(ID:{item.id})</Text></Text>  
+          <MyButton title="Add to Bag" onPress={ ()=>{ this.props.addToCart(item) }}/>    
         </Body>
         </Left>
       </CardItem>
       </Card>       
-    );
-
+    );  
   };
 
-  render() {
-
-    console.log(this.props);
-
-    return (
-      <View>
-
-        <View>
-        
-          <FlatList
-            style= {{backgroundColor:'#EFEFF4', height: height }}
-            data = {this.state.data}
-            renderItem = {this.renderCell}
-          />    
-
-
-        </View>
-
-      </View>
-    );
-  }
 }
 
 const styles = {
@@ -111,7 +105,6 @@ const styles = {
     flexDirection: 'column',
     flex: 1,
     justifyContent: 'flex-start',
-
   },
 };
 
