@@ -14,11 +14,19 @@ export default function (state = [], action) {
 
       // filter to add only unique jobkey
       // from the current state
-      return  [action.payload, ...state];
+      return [action.payload, ...state];
 
-    case constants.CLEAR_LIKED_JOBS:
+    case constants.REMOVE_ITEM_INSIDE_CART:
+      
+      let x = [];
+      x.push(state.itemsInCart);
+      x.splice(action.payload,1);
 
-      return [];
+      console.log(x);
+
+      state.itemsInCart = x;
+
+      return [ ...state];
     
     default:
       return state;

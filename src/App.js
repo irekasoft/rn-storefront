@@ -86,7 +86,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store} >
-      <MainTab/>
+        <MainTab/>
       </Provider>
     );
   }

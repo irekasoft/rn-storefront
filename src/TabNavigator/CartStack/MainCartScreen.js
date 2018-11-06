@@ -3,6 +3,12 @@ import { View, Text, FlatList,
   Dimensions,
 } from 'react-native';
 
+import Swipeout from 'react-native-swipeout';
+
+// import actions 
+
+import * as actions from '../../_actions/_index';
+
 import { Container, Content, Header, Left, Right, Icon, Card, CardItem, Body, Thumbnail } from 'native-base';
 
 const { width, height } = Dimensions.get("screen");
@@ -10,13 +16,16 @@ const { width, height } = Dimensions.get("screen");
 // redux
 import { connect } from 'react-redux';
 
+// Buttons
+let swipeoutBtns = [
+  
+  
+]
 
 class MainCartScreen extends Component {
 
   constructor(props) {
-
-    super(props);
-    
+    super(props);    
   }
 
   state = {
@@ -29,19 +38,26 @@ class MainCartScreen extends Component {
     this.updateCart();
 
   }
+  
 
   renderCell = ({item, index}) => {
     
     return (
       <Card>
-      <CardItem  button onPress={()=>this.props.navigation.navigate('main_detail', { item: item })}>
+      
+      <Swipeout right={[{ text: 'Delete', backgroundColor: 'red', onPress: ()=>{ this.props.removeItemInsideCart(index) },  }]} >
+        
+        <CardItem  button onPress={()=>this.props.navigation.navigate('main_detail', { item: item })}>
         <Left>
         <Thumbnail style={{resizeMode:'cover'}} square source={{ uri: item.image_url }} />  
         <Body>
         <Text>{item.name} <Text>(ID:{item.id})</Text></Text>  
         </Body>
         </Left>
+
       </CardItem>
+      </Swipeout>
+
       </Card>       
     );
 
@@ -66,11 +82,13 @@ class MainCartScreen extends Component {
 
     return (
       <View style={styles.container}>
+      
         <FlatList
             style= {{backgroundColor:'#EFEFF4', height: height }}
             data = {this.props.itemsInCart}
             renderItem = {this.renderCell}
-          />    
+          /> 
+             
       </View>
     );
   }
@@ -91,6 +109,5 @@ const mapStateToProps = (state) => {
 
 }
 
-
-export default connect(mapStateToProps, null)(MainCartScreen);
+export default connect(mapStateToProps, actions)(MainCartScreen);
 

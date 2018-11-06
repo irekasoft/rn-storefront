@@ -74,7 +74,7 @@ class HomeScreen extends Component {
         <Thumbnail style={{resizeMode:'cover'}} square source={{ uri: item.image_url }} />  
         <Body>
         <Text>{item.name} <Text>(ID:{item.id})</Text></Text>  
-        <MyButton title="Add to Bag" onPress={()=>{ this.props.addToCart(item) }}/>    
+        <MyButton title="Add to Bag" onPress={ ()=>{ this.props.addToCart(item) }}/>    
         </Body>
         </Left>
       </CardItem>
@@ -115,4 +115,4 @@ const styles = {
   },
 };
 
-export default connect(null,actions)(HomeScreen);
+export default connect(null, actions)(HomeScreen);

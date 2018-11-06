@@ -26,22 +26,21 @@ export const addToCart = ( item ) => {
   };
 }
 
-export const likeJob = ( job ) => {
+export const removeItemInsideCart = ( index ) => {
 
-  console.log("like job");
+  console.log("removeItemInsideCart " + index);
 
   return {
-    type: constants.LIKE_JOB,
-    payload: job, 
+    type: constants.REMOVE_ITEM_INSIDE_CART,
+    payload: index, 
 
   };
+}
 
-};
-
-export const actionClearAllLikedJobs = () => {
+export const actionClearAllInsideCart = () => {
 
   return {
-    type: constants.CLEAR_LIKED_JOBS,
+    type: constants.REMOVE_ALL_ITEM_INSIDE_CART,
   };
 
 }
